@@ -60,25 +60,54 @@ function selectItemId() {
                         chosenItem = results[i];
                     }
                 }
+                let updatedStock = parseInt(chosenItem.stock_quantity) - parseInt(answer.purchasequantity);
+                let productSales = parseFloat(chosenItem.product_sales).toFixed(2);
 
-                if (chosenItem.stock_quantity <= parseInt(answer.purchasequantity)) {
+                if (chosenItem.stock_quantity < parseInt(answer.purchasequantity)) {
                     console.log("Sorry...we don't have enough in stock.");
+                    startOver();
 
                 }
                 else {
-                    console.log("Fantastic - we have enough in stock! ENJOY");
-                
+                    let Total = (parseFloat(answer.purchasequantity) * chosenItem.price).toFixed(2);
+                    console.log(Total);
+                    let pTotal = (parseFloat(Total) + parseFloat(productSales)).toFixed(2);
+
                     connection.query(
                         "UPDATE products SET ? WHERE ?",
                         [{
-                            stock_quantity: answer.purchasequantity
-                        }
-
-
-                        ]
-                    )
+                            stock_quantity: updatedStock
+                        },
+                        { item_id: chosenItem.item_id },
+                        {
+                            product_sales: pTotal
+                        }], function (err, results) {
+                            if (err) throw err;
+                            console.log("Thank you for your purchase!");
+                            console.log("Your total cost is $: " + Total);
+                            startOver();
+                        })
 
                 }
             });
     });
 }
+
+function startOver() {
+    inquirer.prompt({
+        name: "repurchase",
+        type: "list",
+        choices: ["Yes", "No"],
+        message: "Would you like to purchase something else?"
+    }).then(function (answer) {
+        if (answer.repurchase === "Yes") {
+           showProducts();
+           selectItemId();
+        }
+        else {
+            console.log(`Thanks for stopping by!`)
+            connection.end();
+        }
+    });
+}
+
