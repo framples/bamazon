@@ -32,7 +32,7 @@ This means updating the SQL database to reflect the remaining quantity.
 Once the update goes through, show the customer the total cost of their purchase.
 <br>
 
-This screenshot shows that the user sees upon typing 'node bamazon.js'
+This screenshot shows what the user will see upon typing 'node bamazon.js'
 ![Opening](https://github.com/framples33/bamazon/blob/master/Images/Image1.png)
 
 
