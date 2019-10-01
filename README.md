@@ -30,3 +30,27 @@ Once the customer has placed the order, your application should check if your st
 However, if your store does have enough of the product, you should fulfill the customer's order.
 This means updating the SQL database to reflect the remaining quantity.
 Once the update goes through, show the customer the total cost of their purchase.
+
+
+![Opening](https://github.com/framples33/bamazon/blob/master/Images/Image1.png)
+
+This screenshot shows that the user sees upon typing 'node bamazon.js'
+
+
+![Purchase Quantity](https://github.com/framples33/bamazon/blob/master/Images/Image2.png)
+
+Once the user has selected an item by their ID they are then prompted and asked how many of the item they would like to purchase.
+
+
+![Purchase Complete](https://github.com/framples33/bamazon/blob/master/Images/Image3.png)
+
+If the user enters an amount they wish to purchase that is currently available in inventory (kept in MySQl), they are returned a message that the purchase is complete and shown their total cost.  They are then prompted to re-shop. 
+
+
+![Inventory Updated](https://github.com/framples33/bamazon/blob/master/Images/Image5.png)
+
+You'll notice here that the inventory has been updated - Item 7 inventory decreased by 3.  This update took place from the previous screenshot when a purchase was made. 
+
+In addition, If the user enters an amount they wish to purchase that exceeds what is in stock, they will receive a message stating there isn't enough in stock.  
+
+Once the shopping experience has ended the user is asked if they would like to reshop.  
